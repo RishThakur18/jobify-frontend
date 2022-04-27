@@ -1,5 +1,5 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
-import { RouteComponents } from './RouteComponents';
+import { ROUTES_LIST } from './RouteList';
 import Sidebar from './components/bar/SideBar';
 import MenuBar from './components/bar/MenuBar';
 import TitleBar from './components/bar/TitleBar';
@@ -21,9 +21,9 @@ function App() {
                     </Col>
                     <Col>
                         <Routes>
-                            <Route path="/" element={RouteComponents.SignUp.element} />
-                            <Route path={RouteComponents.SignUp.path} element={RouteComponents.SignUp.element} />
-                            <Route path={RouteComponents.SignIn.path} element={RouteComponents.SignIn.element} />
+                            <Route path={ROUTES_LIST.Default.path} element={ROUTES_LIST.Default.element} />
+                            <Route path={ROUTES_LIST.SignUp.path} element={ROUTES_LIST.SignUp.element} />
+                            <Route path={ROUTES_LIST.SignIn.path} element={ROUTES_LIST.SignIn.element} />
                         </Routes>
                     </Col>
                 </Row>

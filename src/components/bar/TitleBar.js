@@ -1,4 +1,6 @@
 import { Container, Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { ROUTES_LIST } from '../../RouteList';
 
 function TitleBar() {
     return (
@@ -8,7 +10,7 @@ function TitleBar() {
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                     <Navbar.Text>
-                        Signed in as: <a href="#login">------</a>
+                        not logged in? <Link to={ROUTES_LIST.SignIn.path}> Login </Link>
                     </Navbar.Text>
                 </Navbar.Collapse>
             </Container>
