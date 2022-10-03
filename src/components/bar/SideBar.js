@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Button, Offcanvas } from 'react-bootstrap';
+import { Offcanvas } from 'react-bootstrap';
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { sideBarHide } from '../../redux/sidebar/SideBarActions';

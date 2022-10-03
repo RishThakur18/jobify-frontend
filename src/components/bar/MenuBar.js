@@ -1,4 +1,4 @@
-import { Nav, Navbar, Button, Container } from 'react-bootstrap';
+import { Nav, Navbar, Container } from 'react-bootstrap';
 import { sideBarShow } from '../../redux/sidebar/SideBarActions';
 import { connect } from "react-redux";
 import { compose } from "redux";

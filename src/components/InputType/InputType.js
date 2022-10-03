@@ -1,6 +1,6 @@
 import { Form } from "react-bootstrap";
 
-function InputText({ type, label, supportedText, placeHolder }) {
+function InputType({ type, label, supportedText, placeHolder }) {
     return (
         <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>{label}</Form.Label>
@@ -11,4 +11,4 @@ function InputText({ type, label, supportedText, placeHolder }) {
         </Form.Group>
     );
 }
-export default InputText;
+export default InputType;

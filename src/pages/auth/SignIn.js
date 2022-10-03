@@ -1,8 +1,12 @@
+import React from "react";
+import { EMAIL_REGEX } from "../../StringConstants";
+import { compose } from "@reduxjs/toolkit";
+import { connect } from "react-redux";
 import FormLayout from "../../components/layout/FormLayout";
 import InputType from "../../components/InputType/InputType";
 import ButtonType from "../../components/ButtonType.js/ButtonType";
 
-function SignIn() {
+function SignIn(props) {
 
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -23,11 +27,11 @@ function SignIn() {
         switch (name) {
             case "signin":
                 if (EMAIL_REGEX.test(username)) {
-                    setEmailAlert(false);
-                    signIn();
+                    props.setEmailAlert(false);
+                    props.signIn();
                 } else {
                     console.log("here");
-                    setEmailAlert(true);
+                    props.setEmailAlert(true);
                 }
 
                 break;
@@ -69,6 +73,5 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    sideBarShow
 };
 export default compose(connect(mapStateToProps, mapDispatchToProps))(SignIn);

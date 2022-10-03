@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 
 import * as actions from "./AuthActions";
 const baseUrl = "s"
@@ -12,11 +12,8 @@ function* signinRequest(action) {
         },
     };
 
-    let statusCode;
-
     try {
         const response = yield call(fetch, API_URL, PARAMETERS);
-        statusCode = response.status;
         if (response.status === 200) {
             yield put({
                 type: actions.LOGIN_REQUEST_SUCCESS,
