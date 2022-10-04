@@ -6,14 +6,18 @@ import FormLayout from "../../components/layout/FormLayout";
 import InputType from "../../components/InputType/InputType";
 import ButtonType from "../../components/ButtonType.js/ButtonType";
 import { userService } from "../../auth/AuthProvider";
-import { LOGIN_REQUEST_SUCCESS, LOGIN_REQUEST_FAILED } from "../../redux/auth/AuthActions"; 
+import { 
+    LOGIN_REQUEST, 
+    LOGIN_REQUEST_SUCCESS, 
+    LOGIN_REQUEST_FAILED 
+} from "../../redux/auth/AuthActions"; 
 
-function SignIn(props) {
+function LogIn(props) {
 
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
-
-    const handleChange = (event, name) => {
+    
+    function handleChange(event, name) {
         switch (name) {
             case "username": 
                 setUsername(event.target.value);
@@ -27,21 +31,25 @@ function SignIn(props) {
         }
     }
 
-    const handleClick = (event, name) => {
-        let user = null;
+    async function handleClick(event, name) {
+        let isLoggedIn;
         switch (name) {
             case "signin":
-                props.loginrequest();
+                props.loginRequest();
                 if (EMAIL_REGEX.test(username)) {
-                   user = userService.signInRequest(username, password);
-                   console.log("valid creds, sending auth request");
-                   if(user!=null)
-                        props.loginSuccess();
-                    else
-                        props.loginFailed("Invalid credentials");
+                    console.log("valid creds, sending auth request");
+                    isLoggedIn = JSON.parse(await userService.loginRequest(username, password));
+                    console.log(isLoggedIn);
+                    
+                    if(isLoggedIn.status === true)
+                        props.loginSuccess(isLoggedIn.data);
+                    else{
+                        console.log(isLoggedIn.message);
+                        props.loginFailed(isLoggedIn.message);
+                    }
                 } 
                 else {
-                    console.log("invalid cred");
+                    console.log("invalid cred format");
                     props.loginFailed("Invalid credentials format");
                 }
                 break;
@@ -51,6 +59,7 @@ function SignIn(props) {
 
     return (
         <FormLayout>
+            { props.error && <p> {props.error} </p> }
             <InputType
                 type="email"
                 label="Enter email"
@@ -78,16 +87,16 @@ function SignIn(props) {
 
 function mapStateToProps(state) {
     return {
-        state: state.sideBar.state
+        error : state.auth.error
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        loginrequest : () => dispatch({ type : LOGIN_REQUEST }),
+        loginRequest : () => dispatch({ type : LOGIN_REQUEST }),
         loginSuccess : (payload) => dispatch({ type : LOGIN_REQUEST_SUCCESS, user : payload }),
         loginFailed : (payload) => dispatch({ type : LOGIN_REQUEST_FAILED, error : payload })
     };
 }
 
-export default compose(connect(mapStateToProps, mapDispatchToProps))(SignIn);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(LogIn);

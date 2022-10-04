@@ -10,7 +10,7 @@ function TitleBar() {
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                     <Navbar.Text>
-                        not logged in? <Link to={ROUTES_LIST.SignIn.path}> Login </Link>
+                        not logged in? <Link to={ROUTES_LIST.LogIn.path}> Login </Link>
                     </Navbar.Text>
                 </Navbar.Collapse>
             </Container>

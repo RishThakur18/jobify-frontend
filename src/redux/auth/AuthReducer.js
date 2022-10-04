@@ -30,14 +30,14 @@ export default function authReducer(state = INITIAL_STATE, action) {
         case authActions.LOGOUT_REQUEST:
             return {
                 ...state,
-                loading: true,
+                loading: true
             };
         case authActions.LOGOUT_REQUEST_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 loggedIn: false,
-                user: {}
+                user: null
             }
         case authActions.LOGOUT_REQUEST_FAILED:
             return {
