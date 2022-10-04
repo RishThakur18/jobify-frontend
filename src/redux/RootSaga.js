@@ -4,6 +4,6 @@ import AuthSaga from "./auth/AuthSaga";
 
 export default function* rootSaga() {
     yield all([
-        AuthSaga()
+        
     ]);
 }

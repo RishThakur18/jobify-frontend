@@ -21,7 +21,7 @@ export default function authReducer(state = INITIAL_STATE, action) {
                 loggedIn: true,
                 user: action.user
             };
-        case authActions.LOGIN_REQUEST_ERROR:
+        case authActions.LOGIN_REQUEST_FAILED:
             return {
                 ...state,
                 loading: false,
@@ -39,7 +39,7 @@ export default function authReducer(state = INITIAL_STATE, action) {
                 loggedIn: false,
                 user: {}
             }
-        case authActions.LOGOUT_REQUEST_ERROR:
+        case authActions.LOGOUT_REQUEST_FAILED:
             return {
                 ...state,
                 loading: false,
