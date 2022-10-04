@@ -48,19 +48,34 @@ function SignUp() {
         let isSignUpSuccessful;
         switch (name) {
             case "signup":
-                    console.log("valid data, sending auth request");
-                    isSignUpSuccessful = JSON.parse(await userService.signupRequest(firstName, lastName, email, password, otp));
-                    console.log(isSignUpSuccessful);
-                    setStatus(isSignUpSuccessful.status);
+                console.log("valid data, sending auth request");
+                isSignUpSuccessful = JSON.parse(await userService.signupRequest(firstName, lastName, email, password, otp));
+                console.log(isSignUpSuccessful);
+                setStatus(isSignUpSuccessful.status);
 
-                    if(status === true) {
-                        setMessage("Successfully signed up");
-                    }
-                    else{
-                        console.log(isSignUpSuccessful.message);
-                        setMessage(isSignUpSuccessful.message);
-                    }
+                if(status === true) {
+                    setMessage("Successfully signed up");
+                }
+                else{
+                    console.log(isSignUpSuccessful.message);
+                    setMessage(isSignUpSuccessful.message);
+                }
                 break;
+            case "sendOtp":
+                console.log("valid otp, sending send otp request");
+                isSignUpSuccessful = JSON.parse(await userService.signupRequest(firstName, lastName, email, password, otp));
+                console.log(isSignUpSuccessful);
+                setStatus(isSignUpSuccessful.status);
+
+                if(status === true) {
+                    setMessage("Otp sent");
+                }
+                else{
+                    console.log(isSignUpSuccessful.message);
+                    setMessage(isSignUpSuccessful.message);
+                }
+                break;
+
             default: 
         }
     }
@@ -112,12 +127,12 @@ function SignUp() {
 
             <Row>
                 <Col>
-                <InputType
-                    type="email"
-                    label="Email"
-                    placeholder="Enter email"
-                    value={email}
-                    onChange={(event) => handleChange(event, "email")}
+                    <InputType
+                        type="email"
+                        label="Email"
+                        placeholder="Enter email"
+                        value={email}
+                        onChange={(event) => handleChange(event, "email")}
                 />
                 </Col>
                 <Col>
