@@ -8,7 +8,7 @@ import ButtonType from "../../components/ButtonType.js/ButtonType";
 import { userService } from "../../auth/AuthProvider";
 import { Row, Col } from "react-bootstrap";
 
-function SignUp(props) {
+function SignUp() {
 
     const [firstName, setFirstName] = React.useState("");
     const [lastName, setLastName] = React.useState("");
@@ -16,7 +16,9 @@ function SignUp(props) {
     //const [password, setPassword] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [otp, setOtp] = React.useState("");
-    
+    const [message, setMessage] = React.useState("");
+    const [status, setStatus] = React.useState(false);
+
     function handleChange(event, name) {
         switch (name) {
             case "firstname": 
@@ -46,16 +48,17 @@ function SignUp(props) {
         let isSignUpSuccessful;
         switch (name) {
             case "signup":
-                props.signUpRequest();
                     console.log("valid data, sending auth request");
                     isSignUpSuccessful = JSON.parse(await userService.signupRequest(firstName, lastName, email, password, otp));
                     console.log(isSignUpSuccessful);
-                    
-                    if(isSignUpSuccessful.status === true)
-                        props.signupSuccess(isSignUpSuccessful.data);
+                    setStatus(isSignUpSuccessful.status);
+
+                    if(status === true) {
+                        setMessage("Successfully signed up");
+                    }
                     else{
                         console.log(isSignUpSuccessful.message);
-                        props.signupFailed(isSignUpSuccessful.message);
+                        setMessage(isSignUpSuccessful.message);
                     }
                 break;
             default: 
@@ -64,7 +67,7 @@ function SignUp(props) {
 
     return (
         <FormLayout>
-             { props.error && <p> {props.error} </p> }
+            { message && <p> {message} </p> }
             <Row>
                 <Col>
                     <InputType

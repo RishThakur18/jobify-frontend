@@ -71,7 +71,6 @@ async function signupRequest(firstname, lastname, email, password, otp) {
 
     let status= false;
     let message = null;
-    let data = null;
     
     return await fetch(`${BASE_URL}/signin`, requestOptions)
         .then(response => {
@@ -83,13 +82,12 @@ async function signupRequest(firstname, lastname, email, password, otp) {
         .then(json => {
             status = true;
             message = "Login successful";
-            data = json;
-            return JSON.stringify({ status, message, data});
+            return JSON.stringify({ status, message });
         })
         .catch(error => {
             console.error(error.message);
             status = false;
             message = "Login unsuccessful : ".concat(error.message);
-            return JSON.stringify({ status, message, data});
+            return JSON.stringify({ status, message });
         });
 }
