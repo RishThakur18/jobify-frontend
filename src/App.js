@@ -9,6 +9,7 @@ function App() {
     return (
         <BrowserRouter>
             <Container fluid>
+            <Sidebar />
                 <Row>
                     <TitleBar />
                 </Row>
@@ -17,11 +18,8 @@ function App() {
                 </Row>
                 <Row>
                     <Col>
-                        <Sidebar />
-                    </Col>
-                    <Col>
                         <Routes>
-                            <Route path={ROUTES_LIST.Default.path} element={ROUTES_LIST.Default.element} />
+                            <Route path={ROUTES_LIST.Home.path} element={ROUTES_LIST.Home.element} />
                             <Route path={ROUTES_LIST.SignUp.path} element={ROUTES_LIST.SignUp.element} />
                             <Route path={ROUTES_LIST.LogIn.path} element={ROUTES_LIST.LogIn.element} />
                         </Routes>

@@ -9,7 +9,9 @@ function MenuBar(props) {
         <Navbar bg="light" expand="lg">
             <Container fluid>
                 <Nav className="me-auto">
-                    <FiMenu onClick={props.sideBarShow}></FiMenu>
+                    <Nav.Link>
+                        <FiMenu onClick={props.sideBarShow}/>
+                    </Nav.Link>
                     <Nav.Link href="#home"> Home </Nav.Link>
                     <Nav.Link href="#link"> Link </Nav.Link>
                     <Nav.Link href="#about"> About </Nav.Link>
@@ -19,13 +21,9 @@ function MenuBar(props) {
     );
 }
 
-const mapStateToProps = (state) => ({
-    // state: state.sideBar.state,
-});
-
 const mapDispatchToProps = {
     sideBarShow
 };
 
-export default compose(connect(mapStateToProps, mapDispatchToProps))(MenuBar);
+export default compose(connect(null, mapDispatchToProps))(MenuBar);
 
