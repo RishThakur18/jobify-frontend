@@ -13,7 +13,7 @@ function Home() {
                         <Card.Body>
                             <Card.Title>Card Title</Card.Title>
                             <Card.Text>
-                                Some quick example text to build on the card
+                                Some quick example
                             </Card.Text>
                             <Button variant="primary">Go somewhere</Button>
                         </Card.Body>
